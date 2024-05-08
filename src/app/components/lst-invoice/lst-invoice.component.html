@@ -1,0 +1,90 @@
+<div class="title">
+  <h1>Facturas creadas</h1>
+</div>
+
+
+
+<div class="container">
+  <button type="submit" class="btn btn-primary" (click)="AddInvoice()">Crear factura</button>  
+  <br><br>
+  <mat-form-field>
+    <mat-label>Filtro</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ej: Manzana" #input>    
+  </mat-form-field>
+  
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <!--
+    <ng-container matColumnDef="idInvoice">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.idInvoice}} </td>
+    </ng-container>  
+    -->
+
+    <ng-container matColumnDef="dateInv">
+      <th mat-header-cell *matHeaderCellDef> Fecha Fact. </th>
+      <td mat-cell *matCellDef="let element"> {{element.dateInv}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="documentClient">
+      <th mat-header-cell *matHeaderCellDef> Cod. Cliente </th>
+      <td mat-cell *matCellDef="let element"> {{element.documentClient}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nameClient">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+      <td mat-cell *matCellDef="let element"> {{element.nameClient}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="addressClient">
+      <th mat-header-cell *matHeaderCellDef> Direccion </th>
+      <td mat-cell *matCellDef="let element"> {{element.addressClient}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="phoneClient">
+      <th mat-header-cell *matHeaderCellDef> Telefono </th>
+      <td mat-cell *matCellDef="let element"> {{element.phoneClient}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="descItem">
+      <th mat-header-cell *matHeaderCellDef> Producto </th>
+      <td mat-cell *matCellDef="let element"> {{element.descItem}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="itemQuantity">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </th>
+      <td mat-cell *matCellDef="let element"> {{element.itemQuantity}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Prec. unit </th>
+      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="grossValue">
+      <th mat-header-cell *matHeaderCellDef> Prc bruto </th>
+      <td mat-cell *matCellDef="let element"> {{element.grossValue}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ivaAmout">
+      <th mat-header-cell *matHeaderCellDef> IVA </th>
+      <td mat-cell *matCellDef="let element"> {{element.ivaAmout}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="totalValue">
+      <th mat-header-cell *matHeaderCellDef> Precio total </th>
+      <td mat-cell *matCellDef="let element"> {{element.totalValue}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No se encontro informacion relacionada con  "{{input.value}}"</td>
+    </tr>
+
+  </table>
+  <br>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>

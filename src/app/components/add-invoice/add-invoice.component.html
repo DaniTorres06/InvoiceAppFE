@@ -1,0 +1,89 @@
+<!-- <p>add-invoice works!</p> -->
+<div class="title">
+  <h1>Creacion de factura</h1>
+</div>
+
+<div class="container">
+  <div class="card mt-4">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-7">
+          <form [formGroup]="form" (ngSubmit)="invoiceAdd()">
+            <h2 class="mb-3">Encabezado</h2>
+            <fieldset disabled>
+              <div class="mb-3">
+                <label for="fecha" class="form-label">Fecha:</label>
+                <p>{{ fechaFormateada }}</p>
+              </div>
+            </fieldset>
+            <div class="mb-3">
+              <label for="documentClient" class="form-label">Número de Cliente:</label>
+              <input type="number" class="form-control" id="documentClient" name="documentClient"
+                formControlName="documentClient" autocomplete="off" />
+            </div>
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre:</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" formControlName="name"
+                autocomplete="off" />
+            </div>
+            <div class="mb-3">
+              <label for="apellido" class="form-label">Apellido:</label>
+              <input type="text" class="form-control" id="apellido" name="apellido" formControlName="lastName"
+                autocomplete="off" />
+            </div>
+            <div class="mb-3">
+              <label for="direccion" class="form-label">Direccion:</label>
+              <input type="text" class="form-control" id="direccion" name="direccion" formControlName="addressClient"
+                autocomplete="off" />
+            </div>
+            <div class="mb-3">
+              <label for="telefono" class="form-label">Teléfono:</label>
+              <input type="text" class="form-control" id="telefono" name="telefono" formControlName="phoneClient"
+                autocomplete="off" />
+            </div>
+            <button type="submit" class="btn btn-success">Grabar</button>
+            
+            <button type="submit" class="btn btn-primary" (click)="LstInvoice()">Facturas creadas</button>
+          </form>
+        </div>
+
+        <div class="col-4">
+          <div class="container">
+            <form [formGroup]="fromInvBody">
+              <h2 class="mb-3">Detalle</h2>
+
+              <!--
+              <div class="mb-3">
+                <label for="producto" class="form-label">Producto:</label>
+                <input type="number" class="form-control" id="producto" name="producto" formControlName="ItemId" />
+              </div>
+              -->
+              
+              <div class="mb-3">
+                <select class="form-select " formControlName = "ItemId" >                  
+                  <option *ngFor = "let vItem of vRspItem" [value]="vItem.idItem"> {{vItem.descItem}} </option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="cantidad" class="form-label">Cantidad:</label>
+                <input type="cantidad" class="form-control" id="cantidad" name="cantidad" formControlName="ItemQuantity" />
+              </div>
+
+              <div class="mb-3">
+                <label for="precio" class="form-label">Precio:</label>
+                <input type="number" class="form-control" id="precio" name="precio" formControlName="Price" />
+              </div>
+
+              <div class="mb-3">
+                <label for="precio" class="form-label">Precio:</label>
+                <p>{{ vGrossValue }}</p>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
